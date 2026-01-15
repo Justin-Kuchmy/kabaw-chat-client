@@ -18,6 +18,7 @@ kabaw-chat-client/ <br>
 | Step | Screenshot | Description |
 |------|-----------|-------------|
 | 1    | ![Empty Window](screenshots/screenshot01-mainwindow.png) | Minimal Qt window opens |
+| 2    | ![Empty Window](screenshots/screenshot02-menubar.png) | menu bar with working exit button |
 <br>
 > More updates will be added as development progresses.
 
