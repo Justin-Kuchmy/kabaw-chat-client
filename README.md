@@ -19,6 +19,8 @@ kabaw-chat-client/ <br>
 |------|-----------|-------------|
 | 1    | ![Empty Window](screenshots/screenshot01-mainwindow.png) | Minimal Qt window opens |
 | 2    | ![Empty Window](screenshots/screenshot02-menubar.png) | menu bar with working exit button |
+| 3    | ![Empty Window](screenshots/screenshot03-simplehtmlclient.png) | simple html client page |
+| 4    | ![Empty Window](screenshots/screenshot04-2connections.png) | two connections sending messages |
 <br>
 > More updates will be added as development progresses.
 
