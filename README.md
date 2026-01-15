@@ -4,7 +4,7 @@ A simple WebSocket chat client built in Qt (C++) using the [kabaw-sockets](https
 ---
 
 ## Project Structure
-kabaw-chat-client/
+kabaw-chat-client/ <br>
 ├── README.md <br>
 ├── LICENSE <br>
 ├── .gitignore <br>
