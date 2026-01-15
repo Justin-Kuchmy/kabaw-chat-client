@@ -2,6 +2,7 @@
 #include <QApplication>
 #include <QMenuBar>
 #include <QFile>
+#include "UI/ChatRoomWidget.h"
 
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent)
 {
@@ -21,6 +22,9 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent)
     helpMenu->addAction("About");
     
     setMenuBar(menuBar);
+
+    ChatRoomWidget *chatRoom = new ChatRoomWidget(this);
+    setCentralWidget(chatRoom);
 
     connect(exitButton, &QAction::triggered, this, [this]() {QApplication::quit();});
 }
