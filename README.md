@@ -21,6 +21,7 @@ kabaw-chat-client/ <br>
 | 2    | ![Empty Window](screenshots/screenshot02-menubar.png) | menu bar with working exit button |
 | 3    | ![Empty Window](screenshots/screenshot03-simplehtmlclient.png) | simple html client page |
 | 4    | ![Empty Window](screenshots/screenshot04-2connections.png) | two connections sending messages |
+| 5    | ![Empty Window](screenshots/screenshot05-chatroomui.png) | ui for chatroom and join dialog box |
 <br>
 > More updates will be added as development progresses.
 
