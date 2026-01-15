@@ -19,6 +19,7 @@ public:
 
 private slots:
     void onSendClicked();
+    void onJoinClicked();
 
 private:
     Ui::ChatRoomWidget *ui;

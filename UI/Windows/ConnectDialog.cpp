@@ -12,7 +12,6 @@ ConnectDialog::ConnectDialog(QWidget *parent): QDialog(parent), ui(new Ui::Conne
 }
 void ConnectDialog::onConnectClicked()
 {
-    std::cerr << "ConnectDialog::onConnectClicked()" << std::endl;
     userName = ui->usernameText->toPlainText().toStdString();
     chatRoomName = ui->chatroomText->toPlainText().toStdString();
 

@@ -6,13 +6,19 @@
 ChatRoomWidget::ChatRoomWidget(QWidget *parent): QWidget(parent), ui(new Ui::ChatRoomWidget)
 {
     ui->setupUi(this);
-    connect(ui->joinButton, &QPushButton::clicked, this, &ChatRoomWidget::onSendClicked);
+    connect(ui->sendButton, &QPushButton::clicked, this, &ChatRoomWidget::onSendClicked);
+    connect(ui->joinButton, &QPushButton::clicked, this, &ChatRoomWidget::onJoinClicked);
 
 }
 
 void ChatRoomWidget::onSendClicked()
 {
-    std::cerr << "ChatRoomWidget::onSendClicked()" << std::endl;
+
+
+}
+
+void ChatRoomWidget::onJoinClicked()
+{
     ConnectDialog *connect = new ConnectDialog{};
     if (connect && connect->exec() == QDialog::Accepted)
     {
