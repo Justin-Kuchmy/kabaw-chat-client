@@ -38,7 +38,7 @@ QWebSocket* WebSocketManager::socketForRoom(const QString& room, const QString& 
         emit messageReceived(room, msg);
     });
 
-    QString url = QString("ws://localhost:8080/ws?username=%1&channel=%2").arg(username, room);
+    QString url = QString("ws://192.168.0.5:8080/ws?username=%1&channel=%2").arg(username, room);
 
     socket->open(QUrl(url));
     return socket;
