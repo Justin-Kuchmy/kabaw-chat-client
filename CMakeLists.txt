@@ -30,12 +30,12 @@ file(GLOB_RECURSE APP_SOURCES CONFIGURE_DEPENDS
     "${CMAKE_SOURCE_DIR}/main.cpp"
     "${CMAKE_SOURCE_DIR}/Include/*.h"
     "${CMAKE_SOURCE_DIR}/Include/**/*.h"
-    "${CMAKE_SOURCE_DIR}/UI/*.cpp"
-    "${CMAKE_SOURCE_DIR}/UI/**/*.cpp"
+    "${CMAKE_SOURCE_DIR}/src/UI/Dialogs/*.cpp"
+    "${CMAKE_SOURCE_DIR}/src/UI/Windows/*.cpp"
 )
 
 file(GLOB_RECURSE UI_FILES
-    "${CMAKE_SOURCE_DIR}/UI/*.ui"
+    "${CMAKE_SOURCE_DIR}/src/UI/Dialogs/*.ui"
 )
 
 add_executable(Kabaw_chat_client
@@ -55,7 +55,8 @@ else()
     set_target_properties(Kabaw_chat_client PROPERTIES OUTPUT_NAME "Kabaw_chat_client")
 endif()
 
-set_target_properties(Kabaw_chat_client PROPERTIES AUTOUIC_SEARCH_PATHS "${CMAKE_SOURCE_DIR}/UI/Dialogs")
+set_target_properties(Kabaw_chat_client PROPERTIES AUTOUIC_SEARCH_PATHS "${CMAKE_SOURCE_DIR}/src/UI/Dialogs")
+
 
 target_link_libraries(Kabaw_chat_client
     PRIVATE
