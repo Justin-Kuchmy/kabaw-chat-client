@@ -2,6 +2,8 @@
 #define CHATROOMWIDGET_H
 
 #include <QWidget>
+#include "entities/entities.h"
+#include "networking/WebSocketManager.h"
 
 namespace Ui
 {
@@ -16,6 +18,7 @@ public:
     ~ChatRoomWidget();
     ChatRoomWidget(const ChatRoomWidget&) = delete; //delete copy ctor
     ChatRoomWidget& operator=(const ChatRoomWidget&) = delete; //delete assignment ctor
+    void addMessageToList(QString msg);
 
 private slots:
     void onSendClicked();
@@ -23,6 +26,8 @@ private slots:
 
 private:
     Ui::ChatRoomWidget *ui;
+    QWebSocket* socket = nullptr;
+    Cruds cruds{};
 };
 
 #endif
