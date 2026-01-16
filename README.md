@@ -23,7 +23,8 @@ kabaw-chat-client/ <br>
 | 4    | ![Empty Window](screenshots/screenshot04-2connections.png) | two connections sending messages |
 | 5    | ![Empty Window](screenshots/screenshot05-chatroomui.png) | ui for chatroom and join dialog box |
 | 6    | ![Empty Window](screenshots/screenshot06-qwebsockettest.png) | receving messages from server via QWebSocket |
-| 6    | ![Empty Window](screenshots/screenshot07-receivedmessages.png) | Left: Connects to WebSocket server with username, channel and sets up connection, waiting for received messages.emits messageReceived when we get a message from the server. json messages from server are parsed into a custom Message Object. <br> <br> Right: set up the connection listen for the emitted signal, then we pass the message to addMessageToList and calling parseMessage before displaying it on the UI |
+| 7    | ![Empty Window](screenshots/screenshot07-receivedmessages.png) | Left: Connects to WebSocket server with username, channel and sets up connection, waiting for received messages.emits messageReceived when we get a message from the server. json messages from server are parsed into a custom Message Object. <br> <br> Right: set up the connection listen for the emitted signal, then we pass the message to addMessageToList and calling parseMessage before displaying it on the UI |
+| 8    | ![Empty Window](screenshots/screenshot8-twoclients.png) | Simply two clients both connected to the same channel, both in communication|
 <br>
 > More updates will be added as development progresses.
 
