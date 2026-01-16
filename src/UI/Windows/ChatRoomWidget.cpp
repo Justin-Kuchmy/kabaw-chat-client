@@ -13,22 +13,90 @@ ChatRoomWidget::ChatRoomWidget(QWidget *parent): QWidget(parent), ui(new Ui::Cha
         if (msgRoom != QString::fromStdString(cruds.room)) return;  
         addMessageToList(msg);        
     });
+    connect(ui->messageField, &QLineEdit::textChanged,this, &ChatRoomWidget::onMessgeBoxChanged);
+    connect(ui->chatRoomList, &QListWidget::itemClicked, this, &ChatRoomWidget::reloadChatRoom);
+    
+    ui->chatArea->setStyleSheet(R"(
+            QListWidget::item {
+                background-color: #454d53;      
+                color: #ffffff;                 
+                font-size: 20px;                 
+                font-family: "Inter", "Segoe UI", "Noto Sans", "Ubuntu"; 
+                padding: 10px 12px;              
+                margin-bottom: 6px;              
+                border-radius: 8px;              
+                border: 1px solid #a4a4a4;     
+            }
+        )");
+
+    ui->chatRoomList->setStyleSheet(R"(
+        QListWidget {
+            background-color: #232831;
+            border: none;
+            padding: 6px;
+            font-family: "Inter", "Segoe UI", "Noto Sans", "Ubuntu";
+            font-size: 13px;
+        }
+
+        QListWidget::item {
+            background-color: #454d53;      
+            color: #ffffff;                 
+            font-size: 20px;                 
+            font-family: "Inter", "Segoe UI", "Noto Sans", "Ubuntu"; 
+            padding: 10px 12px;              
+            margin-bottom: 6px;              
+            border-radius: 8px;              
+            border: 1px solid #a4a4a4;     
+        }
+
+
+        QListWidget::item:hover {
+            background-color: #59626b;      
+            color: #ffffff;                 
+            border: 1px solid #c0c0c0;     
+        }
+
+        QListWidget::item:selected {
+            background-color: #3a7afe;      
+            color: white;
+            border: 1px solid #3a7afe;
+        }
+    )");
 
 }
 
+void ChatRoomWidget::reloadChatRoom(QListWidgetItem *item)
+{
 
+    if (!item) return;
+    QString storage = item->text();
+    QStringList parts = storage.split(':');
 
+    if (parts.size() == 2) {
+        cruds.room = parts[0].toStdString();  
+        cruds.user = parts[1].toStdString(); 
+    } else {
+        qWarning() << "Invalid storage format:" << storage;
+    }
 
+    ui->chatroomValue->setText(QString::fromStdString(cruds.room));
+    ui->userValue->setText(QString::fromStdString(cruds.user));
 
+    socket  = WebSocketManager::instance().socketForRoom(QString::fromStdString(cruds.room), QString::fromStdString(cruds.user));
 
+    if (!socket) {
+    qWarning() << "Failed to get socket for room " << QString::fromStdString(cruds.room);
+    return;
+    }
 
+    ui->chatArea->clear();
+}
 
-
-
-
-
-
-
+void ChatRoomWidget::onMessgeBoxChanged(QString text)
+{
+    message = text;
+    
+}
 
 void ChatRoomWidget::addMessageToList(const QString msg)
 {
@@ -40,8 +108,29 @@ void ChatRoomWidget::addMessageToList(const QString msg)
                         .arg(QString::fromStdString(m.username))
                         .arg(QString::fromStdString(m.content));
 
+
+    if (m.username == cruds.user) {
+         QListWidgetItem *item = new QListWidgetItem(display, ui->chatArea);
+        item->setTextAlignment(Qt::AlignRight);
+
+        item->setBackground(QBrush(QColor("#3a7afe")));
+        item->setForeground(QBrush(Qt::white));
+        item->setFont(QFont("Inter", 14, QFont::Bold));
+
+
+        ui->chatArea->addItem(item);
+    } else {
+        QListWidgetItem *item = new QListWidgetItem(display, ui->chatArea);
+        item->setTextAlignment(Qt::AlignLeft);
+
+        item->setBackground(QBrush(QColor("#454d53")));
+        item->setForeground(QBrush(QColor("#e0e0e0")));
+        item->setFont(QFont("Inter", 14));
+
+        ui->chatArea->addItem(item);
+    }
+
     
-    ui->chatArea->addItem(display);
     ui->chatArea->scrollToBottom();
         
 }
@@ -52,6 +141,7 @@ void ChatRoomWidget::onJoinClicked()
     if (connectDialog && connectDialog->exec() == QDialog::Accepted)
     {
         cruds = connectDialog->getConnectCruds();
+        ui->chatArea->clear();
         qDebug() << QString::fromStdString(cruds.room) << " " <<QString::fromStdString(cruds.user);
         socket  = WebSocketManager::instance().socketForRoom(QString::fromStdString(cruds.room), QString::fromStdString(cruds.user));
 
@@ -62,13 +152,32 @@ void ChatRoomWidget::onJoinClicked()
 
     }
 
+    
+    ui->chatroomValue->setText(QString::fromStdString(cruds.room));
+    ui->userValue->setText(QString::fromStdString(cruds.user));
+    
+    QString storage = QString("%1:%2")
+                        .arg(QString::fromStdString(cruds.room))
+                        .arg(QString::fromStdString(cruds.user));
+
+    QListWidgetItem *item = new QListWidgetItem(storage);
+    item->setSelected(true);
+    
+    ui->chatRoomList->addItem(item);
+
 }
 
 
 void ChatRoomWidget::onSendClicked()
 {
+    QJsonObject obj;
+    obj["type"] = "message";
+    obj["content"] = message;
 
+    QJsonDocument doc(obj);
+    QString json = QString::fromUtf8(doc.toJson(QJsonDocument::Compact));
 
+    socket->sendTextMessage(json);
 }
 
 
