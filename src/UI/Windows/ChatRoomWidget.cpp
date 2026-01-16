@@ -8,8 +8,62 @@ ChatRoomWidget::ChatRoomWidget(QWidget *parent): QWidget(parent), ui(new Ui::Cha
     ui->setupUi(this);
     connect(ui->sendButton, &QPushButton::clicked, this, &ChatRoomWidget::onSendClicked);
     connect(ui->joinButton, &QPushButton::clicked, this, &ChatRoomWidget::onJoinClicked);
+    connect(&WebSocketManager::instance(), &WebSocketManager::messageReceived,
+            this, [this](const QString& msgRoom, const QString& msg) {
+        if (msgRoom != QString::fromStdString(cruds.room)) return;  
+        addMessageToList(msg);        
+    });
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+void ChatRoomWidget::addMessageToList(const QString msg)
+{
+    Message m = WebSocketManager::parseMessage(msg); 
+
+   
+    QString display = QString("[%1] %2: %3")
+                        .arg(QString::fromStdString(m.channel))
+                        .arg(QString::fromStdString(m.username))
+                        .arg(QString::fromStdString(m.content));
+
+    
+    ui->chatArea->addItem(display);
+    ui->chatArea->scrollToBottom();
+        
+}
+
+void ChatRoomWidget::onJoinClicked()
+{
+    ConnectDialog *connectDialog = new ConnectDialog{};
+    if (connectDialog && connectDialog->exec() == QDialog::Accepted)
+    {
+        cruds = connectDialog->getConnectCruds();
+        qDebug() << QString::fromStdString(cruds.room) << " " <<QString::fromStdString(cruds.user);
+        socket  = WebSocketManager::instance().socketForRoom(QString::fromStdString(cruds.room), QString::fromStdString(cruds.user));
+
+        if (!socket) {
+            qWarning() << "Failed to get socket for room " << QString::fromStdString(cruds.room);
+            return;
+        }
+
+    }
+
+}
+
 
 void ChatRoomWidget::onSendClicked()
 {
@@ -17,14 +71,5 @@ void ChatRoomWidget::onSendClicked()
 
 }
 
-void ChatRoomWidget::onJoinClicked()
-{
-    ConnectDialog *connect = new ConnectDialog{};
-    if (connect && connect->exec() == QDialog::Accepted)
-    {
-        connect->getConnectCruds();
-    }
-
-}
 
 ChatRoomWidget::~ChatRoomWidget(){delete ui;}
