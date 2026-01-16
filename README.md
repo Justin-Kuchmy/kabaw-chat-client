@@ -22,6 +22,7 @@ kabaw-chat-client/ <br>
 | 3    | ![Empty Window](screenshots/screenshot03-simplehtmlclient.png) | simple html client page |
 | 4    | ![Empty Window](screenshots/screenshot04-2connections.png) | two connections sending messages |
 | 5    | ![Empty Window](screenshots/screenshot05-chatroomui.png) | ui for chatroom and join dialog box |
+| 6    | ![Empty Window](screenshots/screenshot06-qwebsockettest.png) | receving messages from server via QWebSocket |
 <br>
 > More updates will be added as development progresses.
 

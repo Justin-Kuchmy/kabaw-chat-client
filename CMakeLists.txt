@@ -5,7 +5,7 @@ project(Kabaw_chat_client LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets Quick QuickWidgets)
+find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets Quick QuickWidgets WebSockets)
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
@@ -65,6 +65,7 @@ target_link_libraries(Kabaw_chat_client
         Qt6::Qml
         Qt6::Quick
         Qt6::QuickWidgets
+        Qt6::WebSockets
 )
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
