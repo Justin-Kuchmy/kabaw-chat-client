@@ -33,6 +33,65 @@ kabaw-chat-client/ <br>
 
 ---
 
+## Installation & Running
+
+### Prerequisites
+
+- C++ compiler  
+  - **Windows:** g++ via MSYS2 (MinGW)
+  - **Linux:** g++ or clang
+- CMake
+- Qt6
+- PowerShell (Windows) or Bash (Linux)
+- Web browser (for WebSocket test pages)
+
+---
+
+## Windows
+
+```powershell
+# Clone the repository
+git clone https://github.com/Justin-Kuchmy/kabaw-chat-client.git
+cd kabaw-chat-client
+
+# Configure the project
+cmake -S . -B build -G "MinGW Makefiles"
+
+# Build the project
+cmake --build build
+
+# Run the executable
+cd build; ./Kabaw_chat_client.exe
+```
+--
+## Linux
+--
+
+```bash
+# Clone the repository
+git clone https://github.com/Justin-Kuchmy/kabaw-chat-client.git
+cd kabaw-chat-client
+
+# Configure and build the project (may need to adjust path)
+cmake -B build -DCMAKE_BUILD_TYPE=Debug -DCMAKE_PREFIX_PATH=/usr/lib/x86_64-linux-gnu
+cmake --build build -j$(nproc)
+
+# Run the executable
+cd build
+./Kabaw_chat_client
+
+#If the executable is not runnable:
+chmod +x build/Kabaw_chat_client
+
+```
+
+##Server
+
+This project is a client for the Kabaw WebSocket server.
+
+Server setup and instructions can be found here:
+👉 <https://github.com/kabaw-ai/kabaw-sockets>
+
 ## License
 
 This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
