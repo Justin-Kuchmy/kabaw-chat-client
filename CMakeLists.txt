@@ -30,6 +30,7 @@ file(GLOB_RECURSE APP_SOURCES CONFIGURE_DEPENDS
     "${CMAKE_SOURCE_DIR}/main.cpp"
     "${CMAKE_SOURCE_DIR}/Include/*.h"
     "${CMAKE_SOURCE_DIR}/Include/**/*.h"
+    "${CMAKE_SOURCE_DIR}/src/networking/*.cpp" 
     "${CMAKE_SOURCE_DIR}/src/UI/Dialogs/*.cpp"
     "${CMAKE_SOURCE_DIR}/src/UI/Windows/*.cpp"
 )
