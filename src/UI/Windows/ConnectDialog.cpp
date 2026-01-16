@@ -19,9 +19,13 @@ void ConnectDialog::onConnectClicked()
 
 }
 
-void ConnectDialog::getConnectCruds()
+Cruds ConnectDialog::getConnectCruds()
 {
-    std::cout << "Trying to join "<< this->chatRoomName << " as "<< userName << std::endl;
+    Cruds cruds;
+    cruds.user = userName;
+    cruds.room = chatRoomName;
+
+    return cruds;
 }
 
 ConnectDialog::~ConnectDialog(){delete ui;}
