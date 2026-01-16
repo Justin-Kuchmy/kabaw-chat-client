@@ -3,6 +3,7 @@
 #include <QMenuBar>
 #include <QFile>
 #include "UI/ChatRoomWidget.h"
+#include "networking/WebSocketManager.h"
 
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent)
 {
@@ -27,6 +28,7 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent)
     setCentralWidget(chatRoom);
 
     connect(exitButton, &QAction::triggered, this, [this]() {QApplication::quit();});
+
 }
 
 MainWindow::~MainWindow()
