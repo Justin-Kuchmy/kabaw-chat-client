@@ -9,7 +9,7 @@ kabaw-chat-client/ <br>
 ├── LICENSE <br>
 ├── .gitignore <br>
 ├── Include # c++ header files <br>
-├── UI/ # Qt/C++ source files <br>
+├── src # Qt/C++ source files <br>
 ├── build/ # CMake build directory <br>
 └── screenshots/ # Progress images <br>
 
