@@ -26,6 +26,8 @@ kabaw-chat-client/ <br>
 | 7    | ![Empty Window](screenshots/screenshot07-receivedmessages.png) | Left: Connects to WebSocket server with username, channel and sets up connection, waiting for received messages.emits messageReceived when we get a message from the server. json messages from server are parsed into a custom Message Object. <br> <br> Right: set up the connection listen for the emitted signal, then we pass the message to addMessageToList and calling parseMessage before displaying it on the UI |
 | 8    | ![Empty Window](screenshots/screenshot8-twoclients.png) | Simply two clients both connected to the same channel, both in communication|
 | 9    | ![Empty Window](screenshots/screenshot09-addedsomestyles.png) | Personal Messages show up brighter and on the right side only, added css for the qlistwidget and items. Visited channels will be saved and rejoined with just a click |
+| 10    | ![Empty Window](screenshots/screenshot10-linux-pc.png) | My Linux laptop connected via my private static ip address |
+| 11    | ![Empty Window](screenshots/screenshot11-windows-pc.png) | My Windows laptop connected to the same private static ip address on the same network |
 <br>
 > More updates will be added as development progresses.
 
