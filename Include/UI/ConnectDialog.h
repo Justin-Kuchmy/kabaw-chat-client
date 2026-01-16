@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QDialog>
+#include "entities/entities.h"
 
 namespace Ui
 {
@@ -17,7 +18,7 @@ public:
     ~ConnectDialog();
     ConnectDialog(const ConnectDialog&) = delete; //delete copy ctor
     ConnectDialog& operator=(const ConnectDialog&) = delete; //delete assignment ctor
-    void getConnectCruds();
+    Cruds getConnectCruds();
 
 private slots:
     void onConnectClicked();
