@@ -28,6 +28,7 @@ kabaw-chat-client/ <br>
 | 9    | ![Empty Window](screenshots/screenshot09-addedsomestyles.png) | Personal Messages show up brighter and on the right side only, added css for the qlistwidget and items. Visited channels will be saved and rejoined with just a click |
 | 10    | ![Empty Window](screenshots/screenshot10-linux-pc.png) | My Linux laptop connected via my private static ip address |
 | 11    | ![Empty Window](screenshots/screenshot11-windows-pc.png) | My Windows laptop connected to the same private static ip address on the same network |
+| 12 | [Screencast](screenshots/ScreenCast.mp4) | Screencast of the working app |
 <br>
 > More updates will be added as development progresses.
 
