@@ -176,7 +176,7 @@ void ChatRoomWidget::onSendClicked()
 
     QJsonDocument doc(obj);
     QString json = QString::fromUtf8(doc.toJson(QJsonDocument::Compact));
-
+    ui->messageField->clear();
     socket->sendTextMessage(json);
 }
 
